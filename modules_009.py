@@ -49,7 +49,7 @@ def choose_operator(power_root_set, div_set, x, y, win_streak, question_number, 
                     print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
                     quit()
-                print("Sorry I don't understand that...Yes or no please")
+                print("Sorry I don't understand that.... Yes or no please")
     div_set = True
     do_you_want_powers(operators, power_root_set, x, y, win_streak, question_number, div_set, skipped, skipped_idling,
                        power_root_set_2, if_not_set_90, min_number_when_power)
