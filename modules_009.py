@@ -37,7 +37,7 @@ def choose_operator(power_root_set, div_set, x, y, win_streak, question_number, 
 >>>''').lower()
             else:
                 operators_div = input('''>>>''').lower()
-            if operators_div == 'yes' or operators_div == 'y' or operators_div == 'maybe':
+            if operators_div == 'yes' or operators_div == 'y ' or operators_div == 'maybe':
                 break
             elif operators_div == 'no' or operators_div == 'n':
                 operators.pop('/')
