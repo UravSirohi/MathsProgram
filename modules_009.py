@@ -58,7 +58,7 @@ def choose_operator(power_root_set, div_set, x, y, win_streak, question_number, 
                 if_idling_2 = True
                 if idling_7 == 4:
                     print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
-the program has automatically shut down to prevent idling.''')
+the program has automatically shut down to prevent idling. ''')
                     quit()
                 print("Sorry I don't understand that...Yes or no please")
     div_set = True
