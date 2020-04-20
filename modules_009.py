@@ -25,7 +25,7 @@ def set_restart():
     min_number_when_power = 0
     root_power = 0
     if_integer = False
-    if_division_before_no = ' '
+    if_division_before_no = ''
     if_root_before_no_2 = ''
     choose_operator(power_root_set, div_set, x, y, win_streak, question_number, skipped, skipped_idling,
                     power_root_set_2, operators, if_not_set_90, min_number_when_power, root_power, root_set, if_integer,
