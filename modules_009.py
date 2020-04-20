@@ -207,7 +207,7 @@ def validate_user_answer(first_number, second_number, operation, calc_answer_2, 
             if not if_idling:
                 user_answer = input(f'''What is {first_number} {operation} {second_number}?
 >>>''').lower()
-                if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'settingo' or user_answer == \
+                if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
                         'restart' or user_answer == 'help' or user_answer == '.help' or user_answer == 'skip':
                     user_answer = user_answer
                 else:
