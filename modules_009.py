@@ -209,7 +209,7 @@ def validate_user_answer(first_number, second_number, operation, calc_answer_2, 
 >>>''').lower()
                 if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
                         'restart' or user_answer == 'help' or user_answer == '.help' or user_answer == 'skip':
-                    user_answer = user_answer
+                    pass
                 else:
                     user_answer = float(user_answer)
             else:
@@ -266,7 +266,7 @@ skip - Skip the question, use this wisely you have only start with 3
                  question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
                  power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
                  if_root_before_no_2)
-    elif round(calc_answer, 2) == float(user_answer) or calc_answer == float(user_answer):
+    elif round(calc_answer, 2) == user_answer or calc_answer == user_answer:
         # noinspection PyArgumentList
         correct(win_streak, question_number, operators, min_number_when_power, div_set, calc_answer, calc_answer_2,
                 user_answer, x, y, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power,
@@ -422,7 +422,7 @@ def quit_0(first_number, second_number, operation, operators, x, y, win_streak,
         else:
             should_quit_2 = input('''>>>''').lower()
         if should_quit_2 == 'yes' or should_quit_2 == 'y':
-            print(Fore.RED, Style.BRIGHT + 'Game ended')
+            print(Fore.RED, Style.BRIGHT + '''Game ended''')
             quit()
         elif should_quit_2 == 'no' or should_quit_2 == 'n':
             question(first_number, second_number, operation, operators, x, y, win_streak,
