@@ -272,7 +272,7 @@ skip - Skip the question, use this wisely you have only start with 3
                 user_answer, x, y, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power,
                 root_set, if_integer, if_root_before_no, if_root_before_no_2)
     else:
-        wrong_answer(win_streak, calc_answer, if_integer)
+        wrong_answer(win_streak, calc_answer)
 
 
 def correct(win_streak, question_number, operators, min_number_when_power, div_set, calc_answer, calc_answer_2,
@@ -290,13 +290,10 @@ def correct(win_streak, question_number, operators, min_number_when_power, div_s
                        if_root_before_no, if_root_before_no_2)
 
 
-def wrong_answer(win_streak, calc_answer, if_integer):
-    try:
-        round(int(calc_answer))
-    except ValueError:
-        if_integer = True
-    if if_integer:
-        print(f"Incorrect, the correct answer was {calc_answer} or rounded to nearest integer {round(calc_answer)}."
+def wrong_answer(win_streak, calc_answer):
+    if_calc_answer_is_int = calc_answer.is_integer()
+    if not if_calc_answer_is_int:
+        print(f"Incorrect, the correct answer was {calc_answer} or rounded down nearest integer {round(calc_answer)}."
               f" Your win streak was {win_streak}.")
     else:
         print(f"Incorrect, the correct answer was {calc_answer}."
