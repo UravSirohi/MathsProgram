@@ -302,9 +302,13 @@ def wrong_answer(win_streak, calc_answer, if_integer):
         print(f"Incorrect, the correct answer was {calc_answer}."
               f" Your win streak was {win_streak}.")
     idling = 0
+    if_idling__4 = False
     while True:
-        restart = input('''Would you like to play again?
+        if not if_idling__4:
+            restart = input('''Would you like to play again?
 >>>''').lower()
+        else:
+            restart = input('''>>>''').lower()
         if restart == "yes" or restart == 'y':
             set_restart()
         elif restart == "no" or restart == 'n':
@@ -322,11 +326,14 @@ def settings(operators, min_number_when_power, x, y, win_streak, question_number
              skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
              if_root_before_no_2):
     idling_3 = 0
+    if_idling___3 = False
     while True:
-
-        setting_which = input('''Which setting would you like to change(P for powers settings, 
+        if not if_idling___3:
+            setting_which = input('''Which setting would you like to change(P for powers settings, 
 D for division or B for both)?
 >>>''').lower()
+        else:
+            setting_which = input('''>>>''').lower()
         if setting_which == 'd':
             div_set = False
             choose_operator(power_root_set, div_set, x, y, win_streak, question_number, skipped, skipped_idling,
@@ -364,9 +371,13 @@ def was_that_easy(x, y, calc_answer, calc_answer_2, user_answer, win_streak, que
                   skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
                   if_root_before_no_2):
     idling_2 = 0
+    if_idling___4 = False
     while True:
-        harder = input('''Was that easy?
+        if not if_idling___4:
+            harder = input('''Was that easy?
 >>>''').lower()
+        else:
+            harder = input('''>>>''').lower()
         if harder == 'yes' or harder == 'maybe' or harder == 'y':
             x += 1
             y += 2
@@ -377,6 +388,7 @@ def was_that_easy(x, y, calc_answer, calc_answer_2, user_answer, win_streak, que
             break
         else:
             idling_2 += 1
+            if_idling___4 = True
             if idling_2 == 4:
                 print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
