@@ -216,7 +216,7 @@ def validate_user_answer(first_number, second_number, operation, calc_answer_2, 
                 user_answer = input('''>>>''').lower()
 
                 if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
-                        'restart' or user_answer == 'help' or user_answer == '.help':
+                        'restart' or user_answer == 'help' or user_answer == '.help' or user_answer == 'stop':
                     user_answer = user_answer
                 else:
                     user_answer = float(user_answer)
@@ -240,39 +240,41 @@ def check_user_answer(calc_answer_2, calc_answer, user_answer, win_streak, quest
                       x, y, div_set, operators, min_number_when_power, power_root_set, skipped, first_number,
                       second_number, operation, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set,
                       if_integer, if_root_before_no, if_root_before_no_2):
-    if user_answer == 'quit' or user_answer == 'stop':
-        quit_0(first_number, second_number, operation, operators, x, y, win_streak,
-               question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
-               power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
-               if_root_before_no_2)
-    elif user_answer == 'settings' or user_answer == 'setting':
-        settings(operators, min_number_when_power, x, y, win_streak, question_number, div_set, power_root_set, skipped,
-                 skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
-                 if_root_before_no_2)
-    elif user_answer == 'restart':
-        set_restart()
-    elif user_answer == 'skip' or user_answer == 'skip question':
-        skip_max(win_streak, question_number, x, y, power_root_set, skipped, skipped_idling, operators,
-                 min_number_when_power, div_set, first_number, second_number, operation, power_root_set_2,
-                 if_not_set_90, root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2)
-    elif user_answer == 'help' or user_answer == '.help':
-        print('''
-quit - End program
-settings - Change answer to hard/irrational division question
-restart - Restart program
-skip - Skip the question, use this wisely you have only start with 3
-                ''')
-        question(first_number, second_number, operation, operators, x, y, win_streak,
-                 question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
-                 power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
-                 if_root_before_no_2)
-    elif round(calc_answer, 2) == user_answer or calc_answer == user_answer:
-        # noinspection PyArgumentList
-        correct(win_streak, question_number, operators, min_number_when_power, div_set, calc_answer, calc_answer_2,
-                user_answer, x, y, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power,
-                root_set, if_integer, if_root_before_no, if_root_before_no_2)
-    else:
-        wrong_answer(win_streak, calc_answer)
+    computer_response = {
+        'quit' or 'stop': lambda: quit_0(first_number, second_number, operation, operators, x, y, win_streak,
+                                         question_number, div_set, min_number_when_power, power_root_set, skipped,
+                                         skipped_idling,
+                                         power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
+                                         if_root_before_no,
+                                         if_root_before_no_2),
+        'restart': lambda: set_restart(),
+        'skip' or 'skip question': lambda: skip_max(win_streak, question_number, x, y, power_root_set, skipped,
+                                                    skipped_idling,
+                                                    operators,
+                                                    min_number_when_power, div_set, first_number, second_number,
+                                                    operation,
+                                                    power_root_set_2,
+                                                    if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+                                                    if_root_before_no_2),
+        'help' or '.help': lambda: help__(first_number, second_number, operation, operators, x, y, win_streak,
+                                          question_number, div_set, min_number_when_power, power_root_set, skipped,
+                                          skipped_idling,
+                                          power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
+                                          if_root_before_no,
+                                          if_root_before_no_2),
+        'setting' or 'settings': lambda: settings(operators, min_number_when_power, x, y, win_streak, question_number,
+                                                  div_set,
+                                                  power_root_set, skipped,
+                                                  skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set,
+                                                  if_integer, if_root_before_no,
+                                                  if_root_before_no_2),
+    }
+    computer_response.get(user_answer, check_number_answer(win_streak, question_number, operators,
+                                                           min_number_when_power, div_set, calc_answer, calc_answer_2,
+                                                           user_answer, x, y, power_root_set, skipped, skipped_idling,
+                                                           power_root_set_2, if_not_set_90, root_power,
+                                                           root_set, if_integer, if_root_before_no,
+                                                           if_root_before_no_2))
 
 
 def correct(win_streak, question_number, operators, min_number_when_power, div_set, calc_answer, calc_answer_2,
@@ -291,13 +293,8 @@ def correct(win_streak, question_number, operators, min_number_when_power, div_s
 
 
 def wrong_answer(win_streak, calc_answer):
-    if_calc_answer_is_int = calc_answer.is_integer()
-    if not if_calc_answer_is_int:
-        print(f"Incorrect, the correct answer was {calc_answer} or rounded down nearest integer {round(calc_answer)}."
-              f" Your win streak was {win_streak}.")
-    else:
-        print(f"Incorrect, the correct answer was {calc_answer}."
-              f" Your win streak was {win_streak}.")
+    print(f"Incorrect, the correct answer was {calc_answer} or rounded down nearest integer {round(calc_answer)}."
+          f" Your win streak was {win_streak}.")
     idling = 0
     if_idling__4 = False
     while True:
@@ -445,3 +442,33 @@ def quit_0(first_number, second_number, operation, operators, x, y, win_streak,
 the program has automatically shut down to prevent idling.''')
                 quit()
             print("Sorry I don't understand that...Yes or No please")
+
+
+def help__(first_number, second_number, operation, operators, x, y, win_streak,
+           question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
+           power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+           if_root_before_no_2):
+    print('''
+    quit - End program
+    settings - Change answer to hard/irrational division question
+    restart - Restart program
+    skip - Skip the question, use this wisely you have only start with 3
+                    ''')
+    question(first_number, second_number, operation, operators, x, y, win_streak,
+             question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
+             power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+             if_root_before_no_2)
+
+
+def check_number_answer(win_streak, question_number, operators, min_number_when_power, div_set, calc_answer,
+                        calc_answer_2,
+                        user_answer, x, y, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90,
+                        root_power,
+                        root_set, if_integer, if_root_before_no, if_root_before_no_2):
+    if round(calc_answer, 2) == user_answer or calc_answer == user_answer:
+        # noinspection PyArgumentList
+        correct(win_streak, question_number, operators, min_number_when_power, div_set, calc_answer, calc_answer_2,
+                user_answer, x, y, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power,
+                root_set, if_integer, if_root_before_no, if_root_before_no_2)
+    else:
+        wrong_answer(win_streak, calc_answer)
