@@ -278,9 +278,9 @@ def correct(win_streak, question_number, operators, min_number_when_power, div_s
         was_that_easy(x, y, calc_answer, calc_answer_2, user_answer, win_streak, question_number, power_root_set,
                       skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
                       if_root_before_no, if_root_before_no_2)
-    operation_if_power(operators, min_number_when_power, x, y, win_streak, question_number, div_set, power_root_set,
-                       skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
-                       if_root_before_no, if_root_before_no_2)
+    choose_operator(power_root_set, div_set, x, y, win_streak, question_number, skipped, skipped_idling,
+                    power_root_set_2, operators, if_not_set_90, min_number_when_power, root_power, root_set, if_integer,
+                    if_root_before_no, if_root_before_no_2)
 
 
 def wrong_answer(win_streak, calc_answer):
@@ -289,8 +289,9 @@ def wrong_answer(win_streak, calc_answer):
         print(f"Incorrect, the correct answer was {calc_answer}."
               f" Your win streak was {win_streak}.")
     elif not calc_answer_2:
-        print(f'''Incorrect, the correct answer was {calc_answer} or rounded to down nearest integer {round(calc_answer)}."
-              Your win streak was {win_streak}.''')
+        calc_answer_2_1 = round(calc_answer)
+        print(f'''Incorrect, the correct answer was {calc_answer} or rounded to down nearest integer {calc_answer_2_1}.
+Your win streak was {win_streak}.''')
     idling = 0
     while True:
         restart = input('''Would you like to play again?
@@ -312,8 +313,10 @@ def settings(operators, min_number_when_power, x, y, win_streak, question_number
              skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
              if_root_before_no_2):
     idling_3 = 0
+    print(f'{Fore.RED}{Style.BRIGHT}_______________________________________________________________________')
+    print(f'''Notice: {Style.NORMAL}{Fore.LIGHTCYAN_EX} you will have to complete the maths question after specifying 
+which setting/settings you would like to change.''')
     while True:
-
         setting_which = input('''Which setting would you like to change(P for powers settings, 
 D for division or B for both)?
 >>>''').lower()
