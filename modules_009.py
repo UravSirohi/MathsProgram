@@ -217,7 +217,7 @@ def validate_user_answer(first_number, second_number, operation, calc_answer_2, 
 
                 if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
                         'restart' or user_answer == 'help' or user_answer == '.help':
-                    user_answer = user_answer
+                    pass
                 else:
                     user_answer = float(user_answer)
         except ValueError:
