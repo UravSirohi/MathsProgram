@@ -216,7 +216,7 @@ def validate_user_answer(first_number, second_number, operation, calc_answer_2, 
                 user_answer = input('''>>>''').lower()
 
                 if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
-                        'restart' or user_answer == 'help' or user_answer == '.help':
+                        'restart' or user_answer == 'help' or user_answer == '.help' or user_answer == 'stop':
                     pass
                 else:
                     user_answer = float(user_answer)
@@ -256,23 +256,16 @@ def check_user_answer(calc_answer_2, calc_answer, user_answer, win_streak, quest
                  min_number_when_power, div_set, first_number, second_number, operation, power_root_set_2,
                  if_not_set_90, root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2)
     elif user_answer == 'help' or user_answer == '.help':
-        print('''
-quit - End program
-settings - Change answer to hard/irrational division question
-restart - Restart program
-skip - Skip the question, use this wisely you have only start with 3
-                ''')
-        question(first_number, second_number, operation, operators, x, y, win_streak,
-                 question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
-                 power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
-                 if_root_before_no_2)
+        help_0(first_number, second_number, operation, operators, x, y, win_streak,
+               question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
+               power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+               if_root_before_no_2)
     elif round(calc_answer, 2) == user_answer or calc_answer == user_answer:
-        # noinspection PyArgumentList
         correct(win_streak, question_number, operators, min_number_when_power, div_set, calc_answer, calc_answer_2,
                 user_answer, x, y, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power,
                 root_set, if_integer, if_root_before_no, if_root_before_no_2)
     else:
-        wrong_answer(win_streak, calc_answer, if_integer)
+        wrong_answer(win_streak, calc_answer)
 
 
 def correct(win_streak, question_number, operators, min_number_when_power, div_set, calc_answer, calc_answer_2,
@@ -290,17 +283,14 @@ def correct(win_streak, question_number, operators, min_number_when_power, div_s
                        if_root_before_no, if_root_before_no_2)
 
 
-def wrong_answer(win_streak, calc_answer, if_integer):
-    try:
-        round(int(calc_answer))
-    except ValueError:
-        if_integer = True
-    if if_integer:
-        print(f"Incorrect, the correct answer was {calc_answer} or rounded to nearest integer {round(calc_answer)}."
-              f" Your win streak was {win_streak}.")
-    else:
+def wrong_answer(win_streak, calc_answer):
+    calc_answer_2 = isinstance(calc_answer, int)
+    if calc_answer_2:
         print(f"Incorrect, the correct answer was {calc_answer}."
               f" Your win streak was {win_streak}.")
+    elif not calc_answer_2:
+        print(f'''Incorrect, the correct answer was {calc_answer} or rounded to down nearest integer {round(calc_answer)}."
+              Your win streak was {win_streak}.''')
     idling = 0
     while True:
         restart = input('''Would you like to play again?
@@ -329,25 +319,16 @@ D for division or B for both)?
 >>>''').lower()
         if setting_which == 'd':
             div_set = False
-            choose_operator(power_root_set, div_set, x, y, win_streak, question_number, skipped, skipped_idling,
-                            power_root_set_2, operators, if_not_set_90, min_number_when_power, root_power, root_set,
-                            if_integer, if_root_before_no, if_root_before_no_2)
             break
         if setting_which == 'b':
             power_root_set = False
             div_set = False
-            do_you_want_powers(operators, power_root_set, x, y, win_streak, question_number, div_set, skipped,
-                               skipped_idling,
-                               power_root_set_2, if_not_set_90, min_number_when_power, root_power, root_set,
-                               if_integer, if_root_before_no, if_root_before_no_2)
+            break
         if setting_which == 'p':
             power_root_set_2 = False
             power_root_set = False
             root_set = False
-            do_you_want_powers(operators, power_root_set, x, y, win_streak, question_number, div_set, skipped,
-                               skipped_idling,
-                               power_root_set_2, if_not_set_90, min_number_when_power, root_power, root_set,
-                               if_integer, if_root_before_no, if_root_before_no_2)
+            break
         else:
             idling_3 += 1
             if idling_3 == 3:
@@ -436,3 +417,19 @@ def quit_0(first_number, second_number, operation, operators, x, y, win_streak,
 the program has automatically shut down to prevent idling.''')
                 quit()
             print("Sorry I don't understand that...Yes or No please")
+
+
+def help_0(first_number, second_number, operation, operators, x, y, win_streak,
+           question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
+           power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+           if_root_before_no_2):
+    print('''
+    quit - End program
+    settings - Change answer to hard/irrational division question
+    restart - Restart program
+    skip - Skip the question, use this wisely you have only start with 3
+    ''')
+    question(first_number, second_number, operation, operators, x, y, win_streak,
+             question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
+             power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+             if_root_before_no_2)
