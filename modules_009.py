@@ -161,42 +161,29 @@ the program has automatically shut down to prevent idling.''')
                     quit()
                 print("Sorry I don't understand that...Yes or no please")
     power_root_set = True
-    operation_if_power(operators, min_number_when_power, x, y, win_streak, question_number, div_set, power_root_set,
-                       skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
-                       if_root_before_no, if_root_before_no_2)
+    question(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
+             skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+             if_root_before_no_2)
 
 
-def operation_if_power(operators, min_number_when_power, x, y, win_streak, question_number, div_set, power_root_set,
-                       skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
-                       if_root_before_no, if_root_before_no_2):
+def question(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
+             skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+             if_root_before_no_2):
     operation = random.choice(list(operators.keys()))
-    if operation == '**':
-        first_number = random.randint(min_number_when_power, 9)
-        second_number = random.randint(root_power, 3)
-    else:
-        first_number = random.randint(x, y)
-        second_number = random.randint(x, y)
-    question(first_number, second_number, operation, operators, x, y, win_streak,
-             question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling, power_root_set_2,
-             if_not_set_90, root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2)
-
-
-def question(first_number, second_number, operation, operators, x, y, win_streak,
-             question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
-             power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2):
+    first_number = operation_if_power('f', x, y, min_number_when_power, root_power, operation)
+    second_number = operation_if_power('s', x, y, min_number_when_power, root_power, operation)
     if skipped_idling > 3:
         print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
         quit()
-    calc_answer = operators.get(operation)(first_number, second_number)
-    calc_answer_2 = str(round(calc_answer, 2))
-    validate_user_answer(first_number, second_number, operation, calc_answer_2, calc_answer, win_streak,
+    calc_answer = float(operators.get(operation)(first_number, second_number))
+    validate_user_answer(first_number, second_number, operation, calc_answer, win_streak,
                          question_number, x, y, div_set, operators, min_number_when_power, power_root_set, skipped,
                          skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
                          if_root_before_no, if_root_before_no_2)
 
 
-def validate_user_answer(first_number, second_number, operation, calc_answer_2, calc_answer, win_streak,
+def validate_user_answer(first_number, second_number, operation, calc_answer, win_streak,
                          question_number, x, y, div_set, operators, min_number_when_power, power_root_set, skipped,
                          skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
                          if_root_before_no, if_root_before_no_2):
@@ -230,20 +217,17 @@ the program has automatically shut down to prevent idling.''')
             print("Sorry I don't understand that...Only numbers please")
         else:
             break
-    check_user_answer(calc_answer_2, calc_answer, user_answer, win_streak, question_number,
-                      x, y, div_set, operators, min_number_when_power, power_root_set, skipped, first_number,
-                      second_number, operation, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set,
-                      if_integer, if_root_before_no, if_root_before_no_2)
+    check_user_answer(calc_answer, user_answer, win_streak, question_number, x, y, div_set, operators,
+                      min_number_when_power, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90,
+                      root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2)
 
 
-def check_user_answer(calc_answer_2, calc_answer, user_answer, win_streak, question_number,
-                      x, y, div_set, operators, min_number_when_power, power_root_set, skipped, first_number,
-                      second_number, operation, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set,
-                      if_integer, if_root_before_no, if_root_before_no_2):
+def check_user_answer(calc_answer, user_answer, win_streak, question_number, x, y, div_set, operators,
+                      min_number_when_power, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90,
+                      root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2):
     if user_answer == 'quit' or user_answer == 'stop':
-        quit_0(first_number, second_number, operation, operators, x, y, win_streak,
-               question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
-               power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+        quit_0(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
+               skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
                if_root_before_no_2)
     elif user_answer == 'settings' or user_answer == 'setting':
         settings(operators, min_number_when_power, x, y, win_streak, question_number, div_set, power_root_set, skipped,
@@ -253,29 +237,28 @@ def check_user_answer(calc_answer_2, calc_answer, user_answer, win_streak, quest
         set_restart()
     elif user_answer == 'skip' or user_answer == 'skip question':
         skip_max(win_streak, question_number, x, y, power_root_set, skipped, skipped_idling, operators,
-                 min_number_when_power, div_set, first_number, second_number, operation, power_root_set_2,
-                 if_not_set_90, root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2)
+                 min_number_when_power, div_set, power_root_set_2, if_not_set_90,
+                 root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2)
     elif user_answer == 'help' or user_answer == '.help':
-        help_0(first_number, second_number, operation, operators, x, y, win_streak,
-               question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
-               power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+        help_0(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
+               skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
                if_root_before_no_2)
-    elif round(calc_answer, 2) == user_answer or calc_answer == user_answer:
-        correct(win_streak, question_number, operators, min_number_when_power, div_set, calc_answer, calc_answer_2,
-                user_answer, x, y, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power,
-                root_set, if_integer, if_root_before_no, if_root_before_no_2)
+    elif round(calc_answer, 2) == float(user_answer) or calc_answer == float(user_answer):
+        correct(win_streak, question_number, operators, min_number_when_power, div_set, x, y, power_root_set, skipped,
+                skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+                if_root_before_no_2)
     else:
         wrong_answer(win_streak, calc_answer)
 
 
-def correct(win_streak, question_number, operators, min_number_when_power, div_set, calc_answer, calc_answer_2,
-            user_answer, x, y, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power,
-            root_set, if_integer, if_root_before_no, if_root_before_no_2):
+def correct(win_streak, question_number, operators, min_number_when_power, div_set, x, y, power_root_set, skipped,
+            skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+            if_root_before_no_2):
     print("Well done.")
     win_streak += 1
     question_number += 1
     if question_number == 8:
-        was_that_easy(x, y, calc_answer, calc_answer_2, user_answer, win_streak, question_number, power_root_set,
+        was_that_easy(x, y, operators, div_set, win_streak, min_number_when_power, question_number, power_root_set,
                       skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
                       if_root_before_no, if_root_before_no_2)
     choose_operator(power_root_set, div_set, x, y, win_streak, question_number, skipped, skipped_idling,
@@ -339,12 +322,12 @@ D for division or B for both)?
 the program has automatically shut down to prevent idling.''')
                 quit()
             print("Sorry I don't understand that...P, D or B please")
-    operation_if_power(operators, min_number_when_power, x, y, win_streak, question_number, div_set, power_root_set,
-                       skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
-                       if_root_before_no, if_root_before_no_2)
+    question(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
+             skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+             if_root_before_no_2)
 
 
-def was_that_easy(x, y, calc_answer, calc_answer_2, user_answer, win_streak, question_number, power_root_set, skipped,
+def was_that_easy(x, y, operators, div_set, win_streak, min_number_when_power, question_number, power_root_set, skipped,
                   skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
                   if_root_before_no_2):
     idling_2 = 0
@@ -371,31 +354,31 @@ the program has automatically shut down to prevent idling.''')
 
     if y < 6:
         y = 6
-    operation_if_power(calc_answer, calc_answer_2, user_answer, win_streak, question_number, x, y, power_root_set,
-                       skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
-                       if_root_before_no, if_root_before_no_2)
+    question(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
+             skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+             if_root_before_no_2)
 
 
 def skip_max(win_streak, question_number, x, y, power_root_set, skipped, skipped_idling, operators,
-             min_number_when_power, div_set, first_number, second_number, operation, power_root_set_2, if_not_set_90,
+             min_number_when_power, div_set, power_root_set_2, if_not_set_90,
              root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2):
     skipped -= 1
     if skipped >= 0:
         print(f"You have {skipped} skip powers left")
-        operation_if_power(operators, min_number_when_power, x, y, win_streak, question_number, div_set, power_root_set,
-                           skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
-                           if_root_before_no, if_root_before_no_2)
+        question(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
+                 skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+                 if_root_before_no_2)
     else:
         skipped_idling += 1
         print('You have no skip powers left')
-    question(first_number, second_number, operation, operators, x, y, win_streak, question_number,
-             div_set, min_number_when_power, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90,
-             root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2)
+    question(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
+             skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+             if_root_before_no_2)
 
 
-def quit_0(first_number, second_number, operation, operators, x, y, win_streak,
-           question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling, power_root_set_2,
-           if_not_set_90, root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2):
+def quit_0(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
+           skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+           if_root_before_no_2):
     idling_101 = 0
     if_idling_101 = False
     while True:
@@ -409,10 +392,9 @@ def quit_0(first_number, second_number, operation, operators, x, y, win_streak,
             print(Fore.RED, Style.BRIGHT + '''Game ended''')
             quit()
         elif should_quit_2 == 'no' or should_quit_2 == 'n':
-            question(first_number, second_number, operation, operators, x, y, win_streak,
-                     question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
-                     power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
-                     if_root_before_no_2)
+            question(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set,
+                     skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
+                     if_root_before_no, if_root_before_no_2)
         else:
             idling_101 += 1
             if idling_101 > 3:
@@ -422,9 +404,8 @@ the program has automatically shut down to prevent idling.''')
             print("Sorry I don't understand that...Yes or No please")
 
 
-def help_0(first_number, second_number, operation, operators, x, y, win_streak,
-           question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
-           power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+def help_0(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
+           skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
            if_root_before_no_2):
     print('''
     quit - End program
@@ -432,7 +413,16 @@ def help_0(first_number, second_number, operation, operators, x, y, win_streak,
     restart - Restart program
     skip - Skip the question, use this wisely you have only start with 3
     ''')
-    question(first_number, second_number, operation, operators, x, y, win_streak,
-             question_number, div_set, min_number_when_power, power_root_set, skipped, skipped_idling,
-             power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+    question(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
+             skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
              if_root_before_no_2)
+
+
+def operation_if_power(which_number, x, y, min_number_when_power, root_power, operation):
+    if operation == '**':
+        if which_number == 'f':
+            return random.randint(min_number_when_power, 9)
+        else:
+            return random.randint(root_power, 3)
+    else:
+        return random.randint(x, y)
