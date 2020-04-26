@@ -20,6 +20,7 @@ def set_restart():
         '*': operator.mul,
         '/': operator.truediv,
         '**': operator.pow,
+        '%': operator.mod,
     }
     if_not_set_90 = False
     min_number_when_power = 0
@@ -171,7 +172,7 @@ def question(operators, x, y, win_streak, question_number, div_set, min_number_w
              if_root_before_no_2):
     operation = random.choice(list(operators.keys()))
     first_number = operation_if_power('f', x, y, min_number_when_power, root_power, operation)
-    second_number = operation_if_power('s', x, y, min_number_when_power, root_power, operation)
+    second_number = operation_if_power('', x, y, min_number_when_power, root_power, operation)
     if skipped_idling > 3:
         print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
@@ -192,8 +193,12 @@ def validate_user_answer(first_number, second_number, operation, calc_answer, wi
     while True:
         try:
             if not if_idling:
-                user_answer = input(f'''What is {first_number} {operation} {second_number}?
+                if operation == '%':
+                    user_answer = input(f'''What is {first_number} mod({second_number})?
 >>>''').lower()
+                else:
+                    user_answer = input(f'''What is {first_number} {operation} {second_number}?
+    >>>''').lower()
                 if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
                         'restart' or user_answer == 'help' or user_answer == '.help' or user_answer == 'skip':
                     pass
