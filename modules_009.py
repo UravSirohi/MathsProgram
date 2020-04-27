@@ -242,7 +242,6 @@ def validate_user_answer(first_number, second_number, operation, calc_answer, wi
                     user_answer = float(user_answer)
             else:
                 user_answer = input('''>>>''').lower()
-
                 if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
                         'restart' or user_answer == 'help' or user_answer == '.help' or user_answer == 'stop':
                     pass
