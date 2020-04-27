@@ -467,5 +467,10 @@ def operation_if_power(which_number, x, y, min_number_when_power, root_power, op
             return random.randint(min_number_when_power, 9)
         else:
             return random.randint(root_power, 3)
+    elif operation == '%':
+        if which_number == 'f':
+            return random.randint(3, 19)
+        else:
+            return random.randint(30, 300)
     else:
         return random.randint(x, y)
