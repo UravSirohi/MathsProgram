@@ -336,7 +336,7 @@ def settings(operators, min_number_when_power, x, y, win_streak, question_number
              skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
              if_root_before_no_2, mod_set, is_mod_before):
     idling_3 = 0
-    print(f'{Fore.RED}{Style.BRIGHT}_______________________________________________________________________')
+    print(f'{Fore.RED}{Style.BRIGHT}________________________________________________________________________')
     print(f'''Notice: {Style.NORMAL}{Fore.LIGHTCYAN_EX} you will have to complete the maths question after specifying 
 which setting/settings you would like to change.''')
     while True:
