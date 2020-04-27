@@ -132,7 +132,7 @@ def do_you_want_powers(operators, power_root_set, x, y, win_streak, question_num
                 idling_99 += 1
                 if idling_99 > 3:
                     print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
-                    the program has automatically shut down to prevent idling.''')
+the program has automatically shut down to prevent idling.''')
                     quit()
                 print("Sorry I don't understand that...Yes or no please")
     power_root_set_2 = True
