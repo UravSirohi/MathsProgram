@@ -332,8 +332,8 @@ def wrong_answer(win_streak, calc_answer):
         print(f"Incorrect, the correct answer was {calc_answer}."
               f" Your win streak was {win_streak}.")
     elif not calc_answer_2:
-        calc_answer_2_1 = round(calc_answer)
-        print(f'''Incorrect, the correct answer was {calc_answer} or rounded to down nearest integer {calc_answer_2_1}.
+        calc_answer_2_ = round(calc_answer, 2)
+        print(f'''Incorrect, the correct answer was {calc_answer} or rounded to down to the hundredths {calc_answer_2_}.
 Your win streak was {win_streak}.''')
     idling = 0
     while True:
