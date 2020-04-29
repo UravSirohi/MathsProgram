@@ -244,9 +244,11 @@ def validate_user_answer(first_number, second_number, operation, calc_answer, wi
                          skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
                          if_root_before_no, if_root_before_no_2, mod_set, is_mod_before):
     idling_6 = 0
+    do_not_tell = False
     if_idling = False
     while True:
         try:
+            do_not_tell = False
             if not if_idling:
                 if operation == '%':
                     user_answer = input(f'''What is {first_number} mod({second_number})?
@@ -254,18 +256,16 @@ def validate_user_answer(first_number, second_number, operation, calc_answer, wi
                 else:
                     user_answer = input(f'''What is {first_number} {operation} {second_number}?
 >>>''').lower()
-                if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
-                        'restart' or user_answer == 'help' or user_answer == '.help' or user_answer == 'skip':
-                    pass
-                else:
-                    user_answer = float(user_answer)
             else:
                 user_answer = input('''>>>''').lower()
-                if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
-                        'restart' or user_answer == 'help' or user_answer == '.help' or user_answer == 'stop':
-                    pass
-                else:
-                    user_answer = float(user_answer)
+            if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
+                    'restart' or user_answer == 'help' or user_answer == '.help' or user_answer == 'stop':
+                pass
+            else:
+                if user_answer == '':
+                    print('''Please enter a value...''')
+                    do_not_tell = True
+                user_answer = float(user_answer)
         except ValueError:
             idling_6 += 1
             if_idling = True
@@ -273,7 +273,8 @@ def validate_user_answer(first_number, second_number, operation, calc_answer, wi
                 print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
                 quit()
-            print("Sorry I don't understand that...")
+            if not do_not_tell:
+                print("Sorry I don't understand that...")
         else:
             break
     check_user_answer(calc_answer, user_answer, win_streak, question_number, x, y, div_set, operators,
