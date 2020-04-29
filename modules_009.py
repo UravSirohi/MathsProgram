@@ -63,7 +63,10 @@ def choose_operator(power_root_set, div_set, x, y, win_streak, question_number, 
                     print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
                     quit()
-                print("Sorry I don't understand that...Yes or no please")
+                elif if_division_before_no == '':
+                    print("Please enter a value...Yes ot no please")
+                else:
+                    print("Sorry I don't understand that...Yes or no please")
     div_set = True
     do_you_want_mod(operators, power_root_set, x, y, win_streak, question_number, div_set, skipped, skipped_idling,
                     power_root_set_2, if_not_set_90, min_number_when_power, root_power, root_set, if_integer,
@@ -74,7 +77,7 @@ def do_you_want_mod(operators, power_root_set, x, y, win_streak, question_number
                     power_root_set_2, if_not_set_90, min_number_when_power, root_power, root_set, if_integer,
                     if_root_before_no, if_root_before_no_2, mod_set, is_mod_before):
     if not mod_set:
-        idling_99 = 0
+        idling_98 = 0
         if__idling = False
         while True:
             if not if__idling:
@@ -92,12 +95,16 @@ def do_you_want_mod(operators, power_root_set, x, y, win_streak, question_number
                     is_mod_before = True
                 break
             else:
-                idling_99 += 1
-                if idling_99 > 3:
+                idling_98 += 1
+                if__idling = True
+                if idling_98 == 4:
                     print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
                     quit()
-                print("Sorry I don't understand that...Yes or no please")
+                elif do_you_mod_want == '':
+                    print("Please enter a value...Yes ot no please")
+                else:
+                    print("Sorry I don't understand that...Yes or no please")
     mod_set = True
     do_you_want_powers(operators, power_root_set, x, y, win_streak, question_number, div_set, skipped, skipped_idling,
                        power_root_set_2, if_not_set_90, min_number_when_power, root_power, root_set, if_integer,
@@ -130,11 +137,15 @@ def do_you_want_powers(operators, power_root_set, x, y, win_streak, question_num
                 break
             else:
                 idling_99 += 1
-                if idling_99 > 3:
+                if_idling_56 = True
+                if idling_99 == 4:
                     print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
                     quit()
-                print("Sorry I don't understand that...Yes or no please")
+                elif if_power == '':
+                    print("Please enter a value...Yes ot no please")
+                else:
+                    print("Sorry I don't understand that...Yes or no please")
     power_root_set_2 = True
     do_you_want_roots(operators, power_root_set, x, y, win_streak, question_number, div_set, skipped, skipped_idling,
                       power_root_set_2, if_not_set_90, min_number_when_power, root_power, root_set, if_integer,
@@ -165,7 +176,10 @@ def do_you_want_roots(operators, power_root_set, x, y, win_streak, question_numb
                     print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
                     quit()
-                print("Sorry I don't understand that...Yes or no please")
+                elif are_roots_wanted == '':
+                    print("Please enter a value...Yes ot no please")
+                else:
+                    print("Sorry I don't understand that...Yes or no please")
     root_set = True
     choose_power_root(operators, power_root_set, x, y, win_streak, question_number, div_set, skipped, skipped_idling,
                       power_root_set_2, if_not_set_90, min_number_when_power, root_power, root_set, if_integer,
@@ -196,7 +210,10 @@ def choose_power_root(operators, power_root_set, x, y, win_streak, question_numb
                     print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
                     quit()
-                print("Sorry I don't understand that...Yes or no please")
+                elif power_root == '':
+                    print("Please enter a value...Yes ot no please")
+                else:
+                    print("Sorry I don't understand that...Yes or no please")
     power_root_set = True
     question(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
              skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
@@ -213,6 +230,8 @@ def question(operators, x, y, win_streak, question_number, div_set, min_number_w
         print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
         quit()
+    else:
+        skipped_idling = 0
     calc_answer = float(operators.get(operation)(first_number, second_number))
     validate_user_answer(first_number, second_number, operation, calc_answer, win_streak,
                          question_number, x, y, div_set, operators, min_number_when_power, power_root_set, skipped,
@@ -254,7 +273,7 @@ def validate_user_answer(first_number, second_number, operation, calc_answer, wi
                 print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
                 quit()
-            print("Sorry I don't understand that...Only numbers please")
+            print("Sorry I don't understand that...")
         else:
             break
     check_user_answer(calc_answer, user_answer, win_streak, question_number, x, y, div_set, operators,
@@ -325,11 +344,14 @@ Your win streak was {win_streak}.''')
             quit()
         else:
             idling += 1
-            if idling > 3:
+            if idling == 4:
                 print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
                 quit()
-            print('''Sorry I don't understand that...Yes or no please''')
+            elif restart == '':
+                print("Please enter a value...Yes ot no please")
+            else:
+                print("Sorry I don't understand that...Yes or no please")
 
 
 def settings(operators, min_number_when_power, x, y, win_streak, question_number, div_set, power_root_set, skipped,
@@ -366,6 +388,8 @@ D for division or A for all three)?
 the program has automatically shut down to prevent idling.''')
                 quit()
             print("Sorry I don't understand that...P, D, M or A please")
+            if setting_which == '':
+                print('''Please enter a value...P, D, M or A''')
     question(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
              skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
              if_root_before_no_2, mod_set, is_mod_before)
@@ -375,9 +399,13 @@ def was_that_easy(x, y, operators, div_set, win_streak, min_number_when_power, q
                   skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
                   if_root_before_no_2, mod_set, is_mod_before):
     idling_2 = 0
+    if_idling_97 = False
     while True:
-        harder = input('''Was that easy?
+        if not if_idling_97:
+            harder = input('''Was that easy?
 >>>''').lower()
+        else:
+            harder = input('''>>>''').lower()
         if harder == 'yes' or harder == 'maybe' or harder == 'y':
             x += 1
             y += 2
@@ -392,7 +420,10 @@ def was_that_easy(x, y, operators, div_set, win_streak, min_number_when_power, q
                 print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
                 quit()
-            print("Sorry I don't understand that...Yes or no please")
+            elif harder == '':
+                print("Please enter a value...Yes ot no please")
+            else:
+                print("Sorry I don't understand that...Yes or no please")
     if x < 2:
         x = 2
     if y < 6:
@@ -428,7 +459,6 @@ def quit_0(operators, x, y, win_streak, question_number, div_set, min_number_whe
         if not if_idling_101:
             should_quit_2 = input('''Are you sure you would like to quit?
 >>>''').lower()
-            if_idling_101 = True
         else:
             should_quit_2 = input('''>>>''').lower()
         if should_quit_2 == 'yes' or should_quit_2 == 'y':
@@ -440,11 +470,15 @@ def quit_0(operators, x, y, win_streak, question_number, div_set, min_number_whe
                      if_root_before_no, if_root_before_no_2, mod_set, is_mod_before)
         else:
             idling_101 += 1
-            if idling_101 > 3:
+            if_idling_101 = True
+            if idling_101 == 4:
                 print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
                 quit()
-            print("Sorry I don't understand that...Yes or No please")
+            elif should_quit_2 == '':
+                print("Please enter a value...Yes ot no please")
+            else:
+                print("Sorry I don't understand that...Yes or no please")
 
 
 def help_0(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
@@ -465,12 +499,18 @@ def operation_if_power(which_number, x, y, min_number_when_power, root_power, op
     if operation == '**':
         if which_number == 'f':
             return random.randint(min_number_when_power, 9)
-        else:
+        elif which_number == '':
             return random.randint(root_power, 3)
+        else:
+            print(f'''{Style.BRIGHT}{Fore.RED}An error occurred''')
+            quit()
     elif operation == '%':
         if which_number == '':
             return random.randint(3, 19)
-        else:
+        elif which_number == 'f':
             return random.randint(30, 300)
+        else:
+            print(f'''{Style.BRIGHT}{Fore.RED}An error occurred''')
+            quit()
     else:
         return random.randint(x, y)
