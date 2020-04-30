@@ -345,7 +345,7 @@ def correct(first_number, second_number, operation, calc_answer, win_streak, que
 
 
 def wrong_answer(win_streak, calc_answer):
-    calc_answer_2 = isinstance(calc_answer, int)
+    calc_answer_2 = calc_answer.is_integer()
     if calc_answer_2:
         print(f"Incorrect, the correct answer was {calc_answer}."
               f" Your win streak was {win_streak}.")
@@ -485,8 +485,7 @@ def quit_0(operators, x, y, win_streak, question_number, div_set, min_number_whe
         else:
             should_quit_2 = input('''>>>''').lower()
         if should_quit_2 == 'yes' or should_quit_2 == 'y':
-            print(Fore.RED, Style.BRIGHT + '''Game ended''')
-            quit()
+            quit(f'''{Fore.RED}{Style.BRIGHT}Game ended''')
         elif should_quit_2 == 'no' or should_quit_2 == 'n':
             validate_user_answer(first_number, second_number, operation, calc_answer, win_streak,
                                  question_number, x, y, div_set, operators, min_number_when_power, power_root_set,
@@ -574,3 +573,6 @@ all progress will be lost?
                 print("Please enter a value...Yes ot no please")
             else:
                 print("Sorry I don't understand that...Yes or no please")
+
+
+set_restart()
