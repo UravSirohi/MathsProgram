@@ -260,7 +260,7 @@ def validate_user_answer(first_number, second_number, operation, calc_answer, wi
                 user_answer = input('''>>>''').lower()
             if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
                     'restart' or user_answer == 'help' or user_answer == '.help' or user_answer == 'stop' or \
-                    user_answer == 'quit' or user_answer == 'skip question':
+                    user_answer == 'quit' or user_answer == 'skip question' or user_answer == 'break':
                 pass
             else:
                 if user_answer == '':
@@ -288,7 +288,7 @@ def check_user_answer(first_number, second_number, operation, calc_answer, user_
                       y, div_set, operators, min_number_when_power, power_root_set, skipped, skipped_idling,
                       power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
                       if_root_before_no_2, mod_set, is_mod_before):
-    if user_answer == 'quit' or user_answer == 'stop':
+    if user_answer == 'quit' or user_answer == 'stop' or user_answer == 'break':
         quit_0(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
                skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
                first_number, second_number, operation, calc_answer, if_root_before_no_2, mod_set, is_mod_before)
@@ -546,7 +546,7 @@ def confirm_restart(first_number, second_number, operation, calc_answer, win_str
 all progress will be lost?
 >>>''').lower()
         else:
-            restart_ = input('>>>')
+            restart_ = input('>>>').lower()
         if restart_ == 'y' or restart_ == 'yes':
             set_restart()
         elif restart_ == 'n' or restart_ == 'no':
