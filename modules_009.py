@@ -1,9 +1,17 @@
 import operator
 import random
+import os
 from colorama import *
 
 
 def set_restart():
+    fore = Fore.LIGHTCYAN_EX
+    print(f'''{Style.BRIGHT}{Fore.RED}Notice: {fore}When giving a rounded answer present it always rounded down
+to the second decimal place eg. 1.255 becomes 1.25 not 1.26 or 1.
+If you need assistance type 'help' in the input line when the maths- 
+question-answer stage is present.
+________________________________________________________________________
+{Style.NORMAL}''')
     win_streak = 0
     x = 2
     y = 11
@@ -548,6 +556,7 @@ all progress will be lost?
         else:
             restart_ = input('>>>').lower()
         if restart_ == 'y' or restart_ == 'yes':
+            os.system('cls')
             set_restart()
         elif restart_ == 'n' or restart_ == 'no':
             validate_user_answer(first_number, second_number, operation, calc_answer, win_streak, question_number, x, y,
