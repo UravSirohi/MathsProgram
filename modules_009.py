@@ -574,5 +574,3 @@ all progress will be lost?
             else:
                 print("Sorry I don't understand that...Yes or no please")
 
-
-set_restart()
