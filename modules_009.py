@@ -567,7 +567,7 @@ all progress will be lost?
             if_idling_101 = True
             if idling_101 == 4:
                 print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
-            the program has automatically shut down to prevent idling.''')
+the program has automatically shut down to prevent idling.''')
                 quit()
             elif restart_ == '':
                 print("Please enter a value...Yes ot no please")
