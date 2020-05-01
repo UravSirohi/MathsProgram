@@ -573,4 +573,3 @@ the program has automatically shut down to prevent idling.''')
                 print("Please enter a value...Yes ot no please")
             else:
                 print("Sorry I don't understand that...Yes or no please")
-
