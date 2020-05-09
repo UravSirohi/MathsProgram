@@ -12,35 +12,35 @@ If you need assistance type 'help' in the input line when the maths-
 question-answer stage is present.
 ________________________________________________________________________
 {Style.NORMAL}''')
-    win_streak = 0
-    x = 2
-    y = 11
-    question_number = 0
-    div_set = False
-    power_root_set = False
-    power_root_set_2 = False
-    root_set = False
-    skipped = 3
-    skipped_idling = 0
-    operators = {
-        '+': operator.add,
-        '-': operator.sub,
-        '*': operator.mul,
-        '/': operator.truediv,
-        '**': operator.pow,
-        '%': operator.mod
+    parameter_list = {
+        'win_streak': 0,
+        'x': 2,
+        'y': 11,
+        'question_number': 0,
+        'div_set': False,
+        'power_root_set': False,
+        'power_root_set_2': False,
+        'root_set': False,
+        'if_not_set_90': False,
+        'mod_set': False,
+        'if_integer': False,
+        'is_mod_before': False,
+        'skipped': 3,
+        'skipped_idling': 0,
+        'min_number_when_power': 0,
+        'root_power': 0,
+        'if_division_before_no': '',
+        'if_root_before_no_2': '',
+        'operators': {
+            '+': operator.add,
+            '-': operator.sub,
+            '*': operator.mul,
+            '/': operator.truediv,
+            '%': operator.mod,
+            '**': operator.pow
+        },
     }
-    if_not_set_90 = False
-    mod_set = False
-    min_number_when_power = 0
-    root_power = 0
-    if_integer = False
-    is_mod_before = False
-    if_division_before_no = ''
-    if_root_before_no_2 = ''
-    choose_operator(power_root_set, div_set, x, y, win_streak, question_number, skipped, skipped_idling,
-                    power_root_set_2, operators, if_not_set_90, min_number_when_power, root_power, root_set, if_integer,
-                    if_division_before_no, if_root_before_no_2, mod_set, is_mod_before)
+    choose_operator(**parameter_list)
 
 
 def choose_operator(power_root_set, div_set, x, y, win_streak, question_number, skipped, skipped_idling,
@@ -241,10 +241,10 @@ the program has automatically shut down to prevent idling.''')
     else:
         skipped_idling = 0
     calc_answer = float(operators.get(operation)(first_number, second_number))
-    validate_user_answer(first_number, second_number, operation, calc_answer, win_streak,
-                         question_number, x, y, div_set, operators, min_number_when_power, power_root_set, skipped,
-                         skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
-                         if_root_before_no, if_root_before_no_2, mod_set, is_mod_before)
+    validate_user_answer(first_number, second_number, operation, calc_answer, win_streak, question_number, x, y,
+                         div_set, operators, min_number_when_power, power_root_set, skipped, skipped_idling,
+                         power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
+                         if_root_before_no_2, mod_set, is_mod_before)
 
 
 def validate_user_answer(first_number, second_number, operation, calc_answer, win_streak,
@@ -469,8 +469,8 @@ def skip_max(first_number, second_number, operation, calc_answer, win_streak, qu
     if calc_answer_:
         print(f'''The answer to the question that you skipped was {round(calc_answer)}.''')
     else:
-        ca = round(calc_answer, 2)
-        print(f'''The answer to the question that you skipped was {calc_answer} or to the nearest hundredth {ca}''')
+        rounds = round(calc_answer, 2)
+        print(f'''The answer to the question that you skipped was {calc_answer} or to the nearest hundredth {rounds}''')
     if skipped >= 0:
         print(f'''You have {skipped} skip powers left
 ''')
