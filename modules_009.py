@@ -52,9 +52,10 @@ def choose_operator(power_root_set, div_set, x, y, win_streak, question_number, 
         while True:
             if not if_idling_2:
                 operators_div = input('''Do you want this program to contain irrational/hard divide questions?
->>>''').lower().replace(' ', '')
+>>>''')
             else:
-                operators_div = input('''>>>''').lower().replace(' ', '')
+                operators_div = input('''>>>''')
+            operators_div = operators_div.lower().replace(' ', '')
             if operators_div == 'yes' or operators_div == 'y' or operators_div == 'maybe':
                 break
             elif operators_div == 'no' or operators_div == 'n':
@@ -90,9 +91,10 @@ def do_you_want_mod(operators, power_root_set, x, y, win_streak, question_number
         while True:
             if not if__idling:
                 do_you_mod_want = input('''Would you like modular arithmetic to be in this program?
->>>''').lower().replace(' ', '')
+>>>''')
             else:
-                do_you_mod_want = input('''>>>''').lower().replace(' ', '')
+                do_you_mod_want = input('''>>>''')
+            do_you_mod_want = do_you_mod_want.lower().replace(' ', '')
             if do_you_mod_want == 'y' or do_you_mod_want == 'yes':
                 break
             elif do_you_mod_want == 'n' or do_you_mod_want == 'no':
@@ -128,9 +130,10 @@ def do_you_want_powers(operators, power_root_set, x, y, win_streak, question_num
         while True:
             if not if_idling_56:
                 if_power = input('''Do you want powers in this program?
->>>''').lower().replace(' ', '')
+>>>''')
             else:
-                if_power = input('''>>>''').lower().replace(' ', '')
+                if_power = input('''>>>''')
+            if_power = if_power.lower().replace(' ', '')
             if if_power == 'yes' or if_power == 'y' or if_power == 'maybe':
                 break
             elif if_power == 'no' or if_power == 'n':
@@ -169,9 +172,10 @@ def do_you_want_roots(operators, power_root_set, x, y, win_streak, question_numb
         while True:
             if not if_idling_34:
                 are_roots_wanted = input('''Do you want roots to be included in this program?
->>>''').lower().replace(' ', '')
+>>>''')
             else:
-                are_roots_wanted = input('''>>>''').lower().replace(' ', '')
+                are_roots_wanted = input('''>>>''')
+            are_roots_wanted = are_roots_wanted.lower().replace(' ', '')
             if are_roots_wanted == 'yes' or are_roots_wanted == 'y' or are_roots_wanted == 'maybe':
                 root_power = -3
                 break
@@ -203,9 +207,10 @@ def choose_power_root(operators, power_root_set, x, y, win_streak, question_numb
         while True:
             if not if_idling_3:
                 power_root = input('''Do you want this program to contain negative squares or cubes?
->>>''').lower().replace(' ', '')
+>>>''')
             else:
-                power_root = input('''>>>''').lower().replace(' ', '')
+                power_root = input('''>>>''')
+            power_root = power_root.lower().replace(' ', '')
             if power_root == 'yes' or power_root == 'Maybe' or power_root == 'y':
                 min_number_when_power = -10
                 break
@@ -260,12 +265,13 @@ def validate_user_answer(first_number, second_number, operation, calc_answer, wi
             if not if_idling:
                 if operation == '%':
                     user_answer = input(f'''What is {first_number} mod({second_number})?
->>>''').lower().replace(' ', '')
+>>>''')
                 else:
                     user_answer = input(f'''What is {first_number} {operation} {second_number}?
->>>''').lower().replace(' ', '')
+>>>''')
             else:
                 user_answer = input('''>>>''').lower().replace(' ', '')
+            user_answer = user_answer.lower().replace(' ', '')
             if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
                     'restart' or user_answer == 'help' or user_answer == '.help' or user_answer == 'stop' or \
                     user_answer == 'quit' or user_answer == 'skip' or user_answer == 'break':
@@ -358,9 +364,10 @@ Your win streak was {win_streak}.''')
     while True:
         if not if_idling:
             restart = input('''Would you like to play again?
->>>''').lower().replace(' ', '')
+>>>''')
         else:
-            restart = input('''>>>''').lower().replace(' ', '')
+            restart = input('''>>>''')
+        restart = restart.lower().replace(' ', '')
         if restart == "yes" or restart == 'y':
             set_restart()
         elif restart == "no" or restart == 'n':
@@ -381,14 +388,19 @@ the program has automatically shut down to prevent idling.''')
 def settings(first_number, second_number, operation, calc_answer, operators, min_number_when_power, x, y, win_streak,
              question_number, div_set, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90,
              root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2, mod_set, is_mod_before):
-    idling_3 = 0
     print(f'{Fore.RED}{Style.BRIGHT}________________________________________________________________________')
     print(f'''Notice: {Style.NORMAL}{Fore.LIGHTCYAN_EX} you will have to complete the maths question after specifying 
 which setting/settings you would like to change.''')
+    idling_3 = 0
+    if_idling = False
     while True:
-        setting_which = input('''Which setting would you like to change(P for powers settings, M for mod, 
+        if not if_idling:
+            setting_which = input('''Which setting would you like to change(P for powers settings, M for mod, 
 D for division or A for all three)?
->>>''').lower().replace(' ', '')
+>>>''')
+        else:
+            setting_which = input('''>>>''')
+        setting_which = setting_which.lower().replace(' ', '')
         if setting_which == 'd':
             div_set = False
             break
@@ -407,6 +419,7 @@ D for division or A for all three)?
         elif setting_which == 'm':
             mod_set = False
         else:
+            if_idling = True
             idling_3 += 1
             if idling_3 == 3:
                 print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
@@ -430,9 +443,10 @@ def was_that_easy(first_number, second_number, operation, calc_answer, x, y, ope
     while True:
         if not if_idling_97:
             harder = input('''Was that easy?
->>>''').lower().replace(' ', '')
+>>>''')
         else:
-            harder = input('''>>>''').lower().replace(' ', '')
+            harder = input('''>>>''')
+        harder = harder.lower().replace(' ', '')
         if harder == 'yes' or harder == 'maybe' or harder == 'y':
             x += 1
             y += 2
@@ -443,6 +457,7 @@ def was_that_easy(first_number, second_number, operation, calc_answer, x, y, ope
             break
         else:
             idling_2 += 1
+            if_idling_97 = True
             if idling_2 == 4:
                 print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
@@ -480,10 +495,11 @@ def skip_max(first_number, second_number, operation, calc_answer, win_streak, qu
     else:
         skipped_idling += 1
         print('''You have no skip powers left''')
-    validate_user_answer(first_number, second_number, operation, calc_answer, win_streak,
-                         question_number, x, y, div_set, operators, min_number_when_power, power_root_set, skipped,
-                         skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
-                         if_root_before_no, if_root_before_no_2, mod_set, is_mod_before)
+        validate_user_answer(first_number, second_number, operation, calc_answer, win_streak,
+                             question_number, x, y, div_set, operators, min_number_when_power, power_root_set, skipped,
+                             skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
+                             if_root_before_no, if_root_before_no_2, mod_set, is_mod_before)
+    quit(f'{Fore.RED}{Style.BRIGHT}error')
 
 
 def quit_0(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
@@ -494,9 +510,10 @@ def quit_0(operators, x, y, win_streak, question_number, div_set, min_number_whe
     while True:
         if not if_idling_101:
             should_quit_2 = input('''Are you sure you would like to quit?
->>>''').lower().replace(' ', '')
+>>>''')
         else:
-            should_quit_2 = input('''>>>''').lower().replace(' ', '')
+            should_quit_2 = input('''>>>''')
+        should_quit_2 = should_quit_2.lower().replace(' ', '')
         if should_quit_2 == 'yes' or should_quit_2 == 'y':
             quit(f'''{Fore.RED}{Style.BRIGHT}Game ended''')
         elif should_quit_2 == 'no' or should_quit_2 == 'n':
@@ -538,17 +555,11 @@ def operation_if_power(which_number, x, y, min_number_when_power, root_power, op
             return random.randint(min_number_when_power, 9)
         elif which_number == '':
             return random.randint(root_power, 3)
-        else:
-            print(f'''{Style.BRIGHT}{Fore.RED}An error occurred''')
-            quit()
     elif operation == '%':
         if which_number == '':
             return random.randint(3, 19)
         elif which_number == 'f':
             return random.randint(30, 300)
-        else:
-            print(f'''{Style.BRIGHT}{Fore.RED}An error occurred''')
-            quit()
     else:
         return random.randint(x, y)
 
@@ -563,9 +574,10 @@ def confirm_restart(first_number, second_number, operation, calc_answer, win_str
         if not if_idling_101:
             restart_ = input('''Are you sure you would like the program to restart 
 all progress will be lost?
->>>''').lower().replace(' ', '')
+>>>''')
         else:
-            restart_ = input('>>>').lower().replace(' ', '')
+            restart_ = input('>>>')
+        restart_ = restart_.lower().replace(' ', '')
         if restart_ == 'y' or restart_ == 'yes' or restart_ == 'maybe':
             os.system('cls')
             set_restart()
@@ -579,7 +591,7 @@ all progress will be lost?
             if_idling_101 = True
             if idling_101 == 4:
                 print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
-the program has automatically shut down to prevent idling.''')
+the program has automatically sut down to prevent idling.''')
                 quit()
             elif restart_ == '':
                 print("Please enter a value...Yes ot no please")
