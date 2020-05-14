@@ -5,6 +5,7 @@ from colorama import *
 
 
 def set_restart():
+    os.system('cls')
     fore = Fore.LIGHTCYAN_EX
     print(f'''{Style.BRIGHT}{Fore.RED}Notice: {fore}When giving a rounded answer present it always rounded down
 to the second decimal place eg. 1.255 becomes 1.25 not 1.26 or 1.
@@ -15,7 +16,7 @@ ________________________________________________________________________
     parameter_list = {
         'win_streak': 0,
         'x': 2,
-        'y': 11,
+        'y': 12,
         'question_number': 0,
         'div_set': False,
         'power_root_set': False,
@@ -270,7 +271,7 @@ def validate_user_answer(first_number, second_number, operation, calc_answer, wi
                     user_answer = input(f'''What is {first_number} {operation} {second_number}?
 >>>''')
             else:
-                user_answer = input('''>>>''').lower().replace(' ', '')
+                user_answer = input('''>>>''')
             user_answer = user_answer.lower().replace(' ', '')
             if user_answer == 'quit' or user_answer == 'settings' or user_answer == 'setting' or user_answer == \
                     'restart' or user_answer == 'help' or user_answer == '.help' or user_answer == 'stop' or \
@@ -324,12 +325,12 @@ def check_user_answer(first_number, second_number, operation, calc_answer, user_
         help_0(first_number, second_number, operation, calc_answer, operators, x, y, win_streak, question_number,
                div_set, min_number_when_power, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90,
                root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2, mod_set, is_mod_before)
-    elif round(calc_answer, 2) == float(user_answer) or calc_answer == float(user_answer):
-        correct(first_number, second_number, operation, calc_answer, win_streak, question_number, operators,
-                min_number_when_power, div_set, x, y, power_root_set, skipped, skipped_idling, power_root_set_2,
-                if_not_set_90, root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2, mod_set,
-                is_mod_before)
     else:
+        if round(calc_answer, 2) == float(user_answer) or calc_answer == float(user_answer):
+            correct(first_number, second_number, operation, calc_answer, win_streak, question_number, operators,
+                    min_number_when_power, div_set, x, y, power_root_set, skipped, skipped_idling, power_root_set_2,
+                    if_not_set_90, root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2, mod_set,
+                    is_mod_before)
         wrong_answer(win_streak, calc_answer)
 
 
@@ -468,8 +469,16 @@ the program has automatically shut down to prevent idling.''')
                 print("Sorry I don't understand that...Yes or no please")
     if x < 2:
         x = 2
+        easiest = True
+    else:
+        easiest = False
     if y < 6:
         y = 6
+        easiest_ = True
+    else:
+        easiest_ = False
+    if easiest and easiest_:
+        print('''It can't get easier than this.''')
     validate_user_answer(first_number, second_number, operation, calc_answer, win_streak,
                          question_number, x, y, div_set, operators, min_number_when_power, power_root_set, skipped,
                          skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
