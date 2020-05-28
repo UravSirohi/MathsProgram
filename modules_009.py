@@ -58,6 +58,10 @@ def choose_operator(power_root_set, div_set, x, y, win_streak, question_number, 
                 operators_div = input('''>>>''')
             operators_div = operators_div.lower().replace(' ', '')
             if operators_div == 'yes' or operators_div == 'y' or operators_div == 'maybe':
+                if '/' in operators:
+                    pass
+                else:
+                    operators['/'] = operator.truediv
                 break
             elif operators_div == 'no' or operators_div == 'n':
                 if if_division_before_no == '/':
@@ -97,6 +101,10 @@ def do_you_want_mod(operators, power_root_set, x, y, win_streak, question_number
                 do_you_mod_want = input('''>>>''')
             do_you_mod_want = do_you_mod_want.lower().replace(' ', '')
             if do_you_mod_want == 'y' or do_you_mod_want == 'yes':
+                if '%' in operators:
+                    pass
+                else:
+                    operators['%'] = operator.mod
                 break
             elif do_you_mod_want == 'n' or do_you_mod_want == 'no':
                 if is_mod_before:
@@ -136,6 +144,10 @@ def do_you_want_powers(operators, power_root_set, x, y, win_streak, question_num
                 if_power = input('''>>>''')
             if_power = if_power.lower().replace(' ', '')
             if if_power == 'yes' or if_power == 'y' or if_power == 'maybe':
+                if '**' in operators:
+                    pass
+                else:
+                    operators['**'] = operator.pow
                 break
             elif if_power == 'no' or if_power == 'n':
                 if if_root_before_no_2 == 'n':
@@ -246,6 +258,11 @@ the program has automatically shut down to prevent idling.''')
         quit()
     else:
         skipped_idling = 0
+    if first_number == 0:
+        if operation == '**' or operation == '/':
+            question(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set,
+                     skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
+                     if_root_before_no, if_root_before_no_2, mod_set, is_mod_before)
     calc_answer = float(operators.get(operation)(first_number, second_number))
     validate_user_answer(first_number, second_number, operation, calc_answer, win_streak, question_number, x, y,
                          div_set, operators, min_number_when_power, power_root_set, skipped, skipped_idling,
@@ -320,7 +337,8 @@ def check_user_answer(first_number, second_number, operation, calc_answer, user_
     elif user_answer == 'skip':
         skip_max(first_number, second_number, operation, calc_answer, win_streak, question_number, x, y, power_root_set,
                  skipped, skipped_idling, operators, min_number_when_power, div_set, power_root_set_2, if_not_set_90,
-                 root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2, mod_set, is_mod_before)
+                 root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2, mod_set, is_mod_before,
+                 if_root_before_no)
     elif user_answer == 'help' or user_answer == '.help':
         help_0(first_number, second_number, operation, calc_answer, operators, x, y, win_streak, question_number,
                div_set, min_number_when_power, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90,
@@ -484,7 +502,8 @@ the program has automatically shut down to prevent idling.''')
 
 def skip_max(first_number, second_number, operation, calc_answer, win_streak, question_number, x, y, power_root_set,
              skipped, skipped_idling, operators, min_number_when_power, div_set, power_root_set_2, if_not_set_90,
-             root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2, mod_set, is_mod_before):
+             root_power, root_set, if_integer, if_root_before_no, if_root_before_no_2, mod_set, is_mod_before,
+             if_division_before_no):
     skipped -= 1
     calc_answer_ = calc_answer.is_integer()
     if calc_answer_:
@@ -495,9 +514,10 @@ def skip_max(first_number, second_number, operation, calc_answer, win_streak, qu
     if skipped >= 0:
         print(f'''You have {skipped} skip powers left.
 ''')
-        question(operators, x, y, win_streak, question_number, div_set, min_number_when_power, power_root_set, skipped,
-                 skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer, if_root_before_no,
-                 if_root_before_no_2, mod_set, is_mod_before)
+        choose_operator(power_root_set, div_set, x, y, win_streak, question_number, skipped, skipped_idling,
+                        power_root_set_2, operators, if_not_set_90, min_number_when_power, root_power, root_set,
+                        if_integer,
+                        if_division_before_no, if_root_before_no_2, mod_set, is_mod_before)
     else:
         skipped_idling += 1
         print('''You have no skip powers left''')
@@ -543,12 +563,10 @@ the program has automatically shut down to prevent idling.''')
 def help_0(first_number, second_number, operation, calc_answer, operators, x, y, win_streak, question_number, div_set,
            min_number_when_power, power_root_set, skipped, skipped_idling, power_root_set_2, if_not_set_90, root_power,
            root_set, if_integer, if_root_before_no, if_root_before_no_2, mod_set, is_mod_before):
-    print('''
-quit - End program
+    print('''quit - End program
 settings - Change answer to hard/irrational division question
 restart - Restart program
-skip - Skip the question, use this wisely you have only start with 3
-''')
+skip - Skip the question, use this wisely you have only start with 3''')
     validate_user_answer(first_number, second_number, operation, calc_answer, win_streak,
                          question_number, x, y, div_set, operators, min_number_when_power, power_root_set, skipped,
                          skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
@@ -575,9 +593,9 @@ def confirm_restart(first_number, second_number, operation, calc_answer, win_str
                     skipped_idling, power_root_set_2, if_not_set_90, root_power, root_set, if_integer,
                     if_root_before_no, if_root_before_no_2, mod_set, is_mod_before):
     idling_101 = 0
-    if_idling_101 = False
+    if_idling_10 = False
     while True:
-        if not if_idling_101:
+        if not if_idling_10:
             restart_ = input('''Are you sure you would like the program to restart 
 all progress will be lost?
 >>>''')
@@ -594,7 +612,7 @@ all progress will be lost?
                                  if_root_before_no_2, mod_set, is_mod_before)
         else:
             idling_101 += 1
-            if_idling_101 = True
+            if_idling_10 = True
             if idling_101 == 4:
                 print(f'''{Fore.RED}{Style.BRIGHT}You have failed to provide a straight answer, due to that 
 the program has automatically shut down to prevent idling.''')
